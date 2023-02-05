@@ -4,11 +4,15 @@
 			<div class="clearfix mb-20">
 				<div class="pull-left">
 					<h4 class="text-blue h4">Laporan Bulanan</h4>
+
 				</div>
 				<div class="pull-right">
 
 				</div>
 			</div>
+			<?php if ($this->session->flashdata('msg')) { ?>
+				<?= $this->session->flashdata('msg') ?>
+			<?php } ?>
 			<form action="<?= site_url('C_Laporan/filter') ?>" method="post">
 				<div class="mb-3">
 					<label for="exampleFormControlInput1" class="form-label">Pilih Bulan</label>
@@ -16,6 +20,45 @@
 				</div>
 				<input type="submit" value="Filter" name="submit" class="btn btn-primary">
 			</form>
+			<!-- Button trigger modal -->
+			<button type="button" class="btn btn-success mt-2" data-toggle="modal" data-target="#exampleModalCenter">
+				Cetak Laporan
+			</button>
+
+			<!-- Modal -->
+			<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLongTitle">Cetak Laporan Transaksi</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<form action="<?= site_url('C_Laporan/cetaklaporan') ?>" method="post">
+								<div class="row">
+									<div class="col">
+										<label for="formGroupExampleInput">Periode Awal</label>
+										<input type="date" name="date_1" class="form-control" placeholder="First name">
+									</div>
+									<div class="col">
+										<label for="formGroupExampleInput">Periode Akhir</label>
+										<input type="date" name="date_2" class="form-control" placeholder="Last name">
+									</div>
+								</div>
+
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							<input type="submit" class="btn btn-primary" name="submit" value="Cetak Laporan">
+							</form>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
 			<table class="table mt-5">
 				<thead>
 					<tr>
