@@ -166,6 +166,8 @@ class C_Laporan extends CI_Controller
                 $this->db->select('tbl_paket.paket_id');
                 $this->db->from('tbl_cucimobil');
                 $this->db->join('tbl_paket', 'tbl_paket.paket_id = tbl_cucimobil.paket_id');
+                $this->db->where('tbl_cucimobil.cucimobil_tanggal >=', $tanggal_1);
+                $this->db->where('tbl_cucimobil.cucimobil_tanggal <=', $tanggal_2);
                 $this->db->select_sum('tbl_paket.paket_harga');
                 $total = $this->db->get()->result();
 
